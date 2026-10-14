@@ -7,6 +7,7 @@
 import { mockEdit, mockPackage, mockSection } from "./mock-generator";
 import type { Brief, ContentPackage, SectionKey } from "./types";
 import { INSTRUCTION_MAX, validateIdea } from "./types";
+import { getSimulateErrors } from "./storage";
 
 export interface AIProvider {
   readonly kind: "mock" | "ai";
@@ -21,7 +22,10 @@ export class AIServiceError extends Error {
   }
 }
 
-const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const delay = async (ms: number) => {
+  await new Promise((r) => setTimeout(r, ms));
+  if (getSimulateErrors()) throw new AIServiceError("The sample generator is set to fail (Settings → Simulate errors).");
+};
 
 const mockProvider: AIProvider = {
   kind: "mock",

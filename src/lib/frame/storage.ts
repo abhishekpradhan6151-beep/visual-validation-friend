@@ -30,8 +30,14 @@ export function deleteCreation(id: string) {
 export const clearCreations = () => write(KEY, []);
 
 /** Working (unsaved) creation that the studio is currently showing. */
-export const getDraft = () => read<Creation | null>(DRAFT_KEY, null);
-export const setDraft = (c: Creation) => write(DRAFT_KEY, c);
+export type Draft = Omit<Creation, "content"> & { content: Creation["content"] | null };
+export const getDraft = () => read<Draft | null>(DRAFT_KEY, null);
+export const setDraft = (c: Draft) => write(DRAFT_KEY, c);
+
+/** Testing aid: makes the sample generator fail so error states can be checked. */
+const SIM_KEY = "frame.simulateErrors";
+export const getSimulateErrors = () => read<boolean>(SIM_KEY, false);
+export const setSimulateErrors = (v: boolean) => write(SIM_KEY, v);
 
 export type Settings = Omit<Brief, "idea">;
 export const DEFAULT_SETTINGS: Settings = {
