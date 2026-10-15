@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { validateIdea } from "./types";
-import { mockEdit, mockPackage } from "./mock-generator";
+import { validateIdea } from "@/lib/frame/types";
+import { mockEdit, mockPackage } from "@/lib/frame/mock-generator";
 
 const brief = { idea: "Morning routines for students", platform: "TikTok", language: "English", tone: "Funny", duration: 30 } as const;
 
