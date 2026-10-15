@@ -17,7 +17,7 @@ export function ChipGroup<T extends string | number>({ label, options, value, on
     if (!d) return;
     e.preventDefault();
     const n = (i + d + options.length) % options.length;
-    onChange(options[n]);
+    onChange(options[n]!);
     refs.current[n]?.focus();
   };
   return (
