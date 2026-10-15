@@ -14,7 +14,7 @@ import { getCreation, getDraft, saveCreation, setDraft, type Draft } from "@/lib
 import { INSTRUCTION_MAX, type Brief, type ContentPackage, type SectionKey } from "@/lib/frame/types";
 
 export const Route = createFileRoute("/studio")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s["id"] === "string" ? s["id"] : "" }),
   head: () => ({
     meta: [
       { title: "Creation Studio — FRAME" },

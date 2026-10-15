@@ -9,14 +9,14 @@ interface Props {
   index: number;
   title: string;
   copy: string;
-  busy?: boolean;
-  highlight?: boolean;
+  busy?: boolean | undefined;
+  highlight?: boolean | undefined;
   children: ReactNode;
   renderEditor: (done: () => void) => ReactNode;
   onRegenerate: () => void;
 }
 
-export function IconButton({ label, onClick, disabled, children }: { label: string; onClick: () => void; disabled?: boolean; children: ReactNode }) {
+export function IconButton({ label, onClick, disabled, children }: { label: string; onClick: () => void; disabled?: boolean | undefined; children: ReactNode }) {
   return (
     <button
       type="button"

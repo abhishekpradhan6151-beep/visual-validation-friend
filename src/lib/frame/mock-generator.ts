@@ -8,7 +8,7 @@ function hash(s: string) {
   return h >>> 0;
 }
 function pick<T>(arr: readonly T[], seed: number, offset = 0) {
-  return arr[(seed + offset) % arr.length];
+  return arr[(seed + offset) % arr.length]!;
 }
 function topicOf(idea: string) {
   const t = idea.trim().replace(/[.?!]+$/, "");
@@ -100,9 +100,9 @@ export function mockScript(brief: Brief, variant = 0): ContentPackage["script"] 
   const pool = POINTS[brief.language];
   const n = Math.min(pointCount(brief.duration), pool.length);
   const points = Array.from({ length: n }, (_, i) => pick(pool, s, i));
-  if (points.length) points[0] = `${points[0]} ${TONE_FLAVOUR[brief.tone]}`;
+  if (points[0]) points[0] = `${points[0]} ${TONE_FLAVOUR[brief.tone]}`;
   return {
-    opening: mockHooks(brief, variant)[0],
+    opening: mockHooks(brief, variant)[0]!,
     points,
     ending: pick(CTA[brief.language], s, 1),
   };
@@ -160,7 +160,7 @@ export function mockEdit(
   }
   if (i.includes("opening") || i.includes("hook")) {
     next.hooks = mockHooks(brief, 3);
-    next.script.opening = next.hooks[0];
+    next.script.opening = next.hooks[0]!;
     return { content: next, changed: ["hooks", "script"] };
   }
   if (i.includes("short") || /\b(15|30)\b/.test(i)) {

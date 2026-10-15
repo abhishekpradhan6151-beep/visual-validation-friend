@@ -6,10 +6,10 @@ import { DURATIONS, IDEA_MAX, LANGUAGES, PLATFORMS, TONES, validateIdea, type Br
 import { getSettings } from "@/lib/frame/storage";
 
 interface Props {
-  initial?: Brief;
-  submitLabel?: string;
-  busy?: boolean;
-  defaultOpen?: boolean;
+  initial?: Brief | undefined;
+  submitLabel?: string | undefined;
+  busy?: boolean | undefined;
+  defaultOpen?: boolean | undefined;
   onSubmit: (b: Brief) => void;
 }
 
