@@ -5,7 +5,7 @@ import { EditorActions, fieldClass, IconButton } from "./SectionCard";
 
 type Done = () => void;
 
-export function ListEditor({ value, label, onSave, done, min = 1 }: { value: string[]; label: string; onSave: (v: string[]) => void; done: Done; min?: number }) {
+export function ListEditor({ value, label, onSave, done, min = 1 }: { value: string[]; label: string; onSave: (v: string[]) => void; done: Done; min?: number | undefined }) {
   const [items, setItems] = useState(value);
   return (
     <div className="space-y-2">
@@ -60,7 +60,7 @@ export function ScriptEditor({ value, onSave, done }: { value: ContentPackage["s
   );
 }
 
-export function TextEditor({ value, label, rows = 4, onSave, done }: { value: string; label: string; rows?: number; onSave: (v: string) => void; done: Done }) {
+export function TextEditor({ value, label, rows = 4, onSave, done }: { value: string; label: string; rows?: number | undefined; onSave: (v: string) => void; done: Done }) {
   const [v, setV] = useState(value);
   return (
     <div>

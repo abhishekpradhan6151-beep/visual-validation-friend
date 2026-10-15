@@ -6,10 +6,10 @@ import { DURATIONS, IDEA_MAX, LANGUAGES, PLATFORMS, TONES, validateIdea, type Br
 import { getSettings } from "@/lib/frame/storage";
 
 interface Props {
-  initial?: Brief;
-  submitLabel?: string;
-  busy?: boolean;
-  defaultOpen?: boolean;
+  initial?: Brief | undefined;
+  submitLabel?: string | undefined;
+  busy?: boolean | undefined;
+  defaultOpen?: boolean | undefined;
   onSubmit: (b: Brief) => void;
 }
 
@@ -65,7 +65,8 @@ export function BriefForm({ initial, submitLabel = "Generate content", busy, def
             className="press inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] text-muted-foreground hover:bg-accent hover:text-foreground"
           >
             <SlidersHorizontal className="size-3.5" aria-hidden="true" />
-            <span>
+            <span className="sm:hidden">Options</span>
+            <span className="hidden sm:inline">
               {brief.platform} · {brief.language} · {brief.tone} · {brief.duration}s
             </span>
           </button>

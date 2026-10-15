@@ -14,7 +14,7 @@ import { getCreation, getDraft, saveCreation, setDraft, type Draft } from "@/lib
 import { INSTRUCTION_MAX, type Brief, type ContentPackage, type SectionKey } from "@/lib/frame/types";
 
 export const Route = createFileRoute("/studio")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s["id"] === "string" ? s["id"] : "" }),
   head: () => ({
     meta: [
       { title: "Creation Studio — FRAME" },
@@ -362,7 +362,7 @@ function Composer({ brief, content, onApply }: { brief: Brief; content: ContentP
 
   return (
     <div className="sticky bottom-24 z-30 pt-4 md:bottom-6">
-      <div className="rounded-3xl glass p-2">
+      <div className="rounded-3xl glass bg-popover/90 p-2">
         <div className="flex gap-1.5 overflow-x-auto px-1 pb-2 pt-1 [scrollbar-width:none]">
           {SUGGESTIONS.map((s) => (
             <button
